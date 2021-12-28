@@ -20,13 +20,17 @@
 
                 HandleRequestExceptionAsync(httpContext, ex);
             }
+            catch (Exception ex)
+            {
+                var r = "";
+            }
         }
 
         private static void HandleRequestExceptionAsync(HttpContext context, CustomHttpRequestException httpRequestException)
         {
             if (httpRequestException.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                context.Response.Redirect("/login");
+                context.Response.Redirect($"/login?ReturnUrl={context.Request.Path}");
                 return;
             }
             context.Response.StatusCode = (int)httpRequestException.StatusCode;

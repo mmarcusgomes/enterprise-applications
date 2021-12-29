@@ -52,7 +52,7 @@ namespace NSE.WebApp.MVC.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(UsuarioLogin usuarioLogin, string returnUrl = null)
+        public async Task<IActionResult> Login(UsuarioLogin usuarioLogin, string? returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (!ModelState.IsValid) return View(usuarioLogin);
@@ -62,10 +62,11 @@ namespace NSE.WebApp.MVC.Controllers
             if (ResponsePossuiErros(response.ResponseResult)) return View(usuarioLogin);
 
             //Login
-
+            //asp-route-returnUrl=null retorna o null como uma string "null", validar dps como resolver
+            if (returnUrl.Contains("null")) returnUrl = null;
             await RealizarLogin(response);
             if(string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Home");
-
+           
             return LocalRedirect(returnUrl);
         }
 

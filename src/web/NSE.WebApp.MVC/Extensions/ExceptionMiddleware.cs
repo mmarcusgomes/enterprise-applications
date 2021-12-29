@@ -20,10 +20,7 @@
 
                 HandleRequestExceptionAsync(httpContext, ex);
             }
-            catch (Exception ex)
-            {
-                var r = "";
-            }
+           
         }
 
         private static void HandleRequestExceptionAsync(HttpContext context, CustomHttpRequestException httpRequestException)

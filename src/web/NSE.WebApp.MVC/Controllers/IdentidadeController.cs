@@ -62,8 +62,8 @@ namespace NSE.WebApp.MVC.Controllers
             if (ResponsePossuiErros(response.ResponseResult)) return View(usuarioLogin);
 
             //Login
-            //asp-route-returnUrl=null retorna o null como uma string "null", validar dps como resolver
-            if (returnUrl.Contains("null")) returnUrl = null;
+            ////asp-route-returnUrl=null retorna o null como uma string "null", validar dps como resolver
+            //if (returnUrl.Contains("null")) returnUrl = null;
             await RealizarLogin(response);
             if(string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Home");
            

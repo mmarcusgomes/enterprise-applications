@@ -1,4 +1,6 @@
-﻿namespace NSE.Catalogo.API.Configuration
+﻿using Microsoft.OpenApi.Models;
+
+namespace NSE.Catalogo.API.Configuration
 {
     public static class SwaggerConfig
     {
@@ -9,6 +11,29 @@
                 o.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Title = "Estudo Application Enterprise - Catalogo API"
+                });
+                o.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = $"JWT Authorization header using the Bearer scheme.\"Bearer 12345abcdef\"",
+                });
+                o.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id="Bearer"
+                            }
+                        },
+                        new string[]{ }
+                    }
                 });
             });
             return services;

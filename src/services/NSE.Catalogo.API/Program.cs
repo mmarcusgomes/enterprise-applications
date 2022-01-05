@@ -1,4 +1,5 @@
 using NSE.Catalogo.API.Configuration;
+using NSE.WebAPI.Core.Identidade;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -17,6 +18,8 @@ builder.WebHost.ConfigureAppConfiguration((hostingContext, config) =>
 });
 
 builder.Services.AddApiConfiguration(configuration);
+
+builder.Services.AddJwtConfiguration(configuration);
 
 builder.Services.AddSwaggerConfiguration();
 

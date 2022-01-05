@@ -9,9 +9,9 @@
             return services;
         }
 
-        public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app,IWebHostEnvironment env)
+        public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
         {
-          
+
             // Configure the HTTP request pipeline.
             if (env.IsDevelopment())
             {
@@ -21,8 +21,6 @@
 
             app.UseHttpsRedirection();
 
-            app.UseIdentityConfiguration(env);
-            //app.MapControllers();
 
             return app;
         }

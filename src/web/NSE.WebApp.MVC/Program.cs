@@ -22,7 +22,7 @@ builder.Configuration.SetBasePath(hostingEnvironment.ContentRootPath)
 
 builder.Services.AddMvcConfiguration(configuration);
 
-builder.Services.RegisterService();
+builder.Services.RegisterService(configuration);
 
 var app = builder.Build();
 

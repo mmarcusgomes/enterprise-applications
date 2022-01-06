@@ -6,6 +6,12 @@ namespace NSE.WebApp.MVC.Controllers
     //[Route("api/catalogo")]
     public class CatalogoController : MainController
     {
+        //private readonly ICatalogoServiceRefit _catalogoService;
+        //public CatalogoController(ICatalogoServiceRefit catalogoService)
+        //{
+        //    _catalogoService = catalogoService;
+        //}
+
         private readonly ICatalogoService _catalogoService;
         public CatalogoController(ICatalogoService catalogoService)
         {

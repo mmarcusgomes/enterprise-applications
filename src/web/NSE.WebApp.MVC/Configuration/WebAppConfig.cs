@@ -13,17 +13,22 @@ namespace NSE.WebApp.MVC.Configuration
         public static void UseMvcConfiguration(this IApplicationBuilder app,IWebHostEnvironment env)
         {
             // Configure the HTTP request pipeline.
-            if (!env.IsDevelopment())
-            {
-                app.UseExceptionHandler("/erro/500");
-                app.UseStatusCodePagesWithRedirects("/erro/{0}");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            else
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //if (!env.IsDevelopment())
+            //{
+            //    app.UseExceptionHandler("/erro/500");
+            //    app.UseStatusCodePagesWithRedirects("/erro/{0}");
+            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //    app.UseHsts();
+            //}
+            //else
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+
+            app.UseExceptionHandler("/erro/500");
+            app.UseStatusCodePagesWithRedirects("/erro/{0}");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

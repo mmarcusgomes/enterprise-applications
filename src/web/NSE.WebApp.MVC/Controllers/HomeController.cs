@@ -6,7 +6,7 @@ namespace NSE.WebApp.MVC.Controllers
 {
     public class HomeController : Controller
     {
-      
+
 
         public IActionResult Index()
         {
@@ -16,6 +16,20 @@ namespace NSE.WebApp.MVC.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+
+        [Route("sistema-indisponivel")]
+        public IActionResult SistemaIndisponivel()
+        {
+            var modelErro = new ErrorViewModel
+            {
+                Mensagem = "Sistema fora do ar.",
+                Titulo = "Sistema Indisponivel",
+                ErroCode = 500
+
+            };
+            return View("Error", modelErro);
         }
 
         [Route("erro/{id:length(3,3)}")]

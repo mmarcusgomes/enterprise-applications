@@ -1,53 +1,49 @@
-﻿//using Microsoft.AspNetCore.Builder;
-//using Microsoft.AspNetCore.Hosting;
-//using Microsoft.EntityFrameworkCore;
-//using Microsoft.Extensions.Configuration;
-//using Microsoft.Extensions.DependencyInjection;
-//using Microsoft.Extensions.Hosting;
-//using NSE.Clientes.API.Data;
-//using NSE.WebAPI.Core.Identidade;
+﻿using Microsoft.EntityFrameworkCore;
+using NSE.Clientes.API.Data;
 
-//namespace NSE.Clientes.API.Configuration
-//{
-//    public static class ApiConfig
-//    {
-//        public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
-//        {
-//            services.AddDbContext<ClientesContext>(options =>
-//                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+namespace NSE.Clientes.API.Configuration
+{
+    public static class ApiConfig
+    {
+        public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+          
 
-//            services.AddControllers();
+            services.AddDbContext<ClientesContext>(options =>
+             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-//            services.AddCors(options =>
-//            {
-//                options.AddPolicy("Total",
-//                    builder =>
-//                        builder
-//                            .AllowAnyOrigin()
-//                            .AllowAnyMethod()
-//                            .AllowAnyHeader());
-//            });
-//        }
+            services.AddControllers();
 
-//        public static void UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
-//        {
-//            if (env.IsDevelopment())
-//            {
-//                app.UseDeveloperExceptionPage();
-//            }
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Total",
+                    builder =>
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
+            });
+        }
 
-//            app.UseHttpsRedirection();
+        public static void UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
-//            app.UseRouting();
+            app.UseHttpsRedirection();
 
-//            app.UseCors("Total");
+            app.UseRouting();
 
-//            app.UseAuthConfiguration();
+            app.UseCors("Total");
 
-//            app.UseEndpoints(endpoints =>
-//            {
-//                endpoints.MapControllers();
-//            });
-//        }
-//    }
-//}
+            //app.UseAuthConfiguration();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
+}
